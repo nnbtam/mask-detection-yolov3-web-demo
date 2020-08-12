@@ -16,9 +16,13 @@ Activate .sh file to download yolov3 models
 ```
 Then ```cd``` into each folder and call ```flask run``` 
 
+### Technology:
+- Frontend: HTML + CSS + Javascript
+- Backend: Flask
+
 ### References: 
-- https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/
-- Novel Covid API: https://github.com/disease-sh/api
-- UI: https://www.youtube.com/watch?v=zBPHBnSIzfk
-- gdown: https://pypi.org/project/gdown/
-- Face mask dataset: https://www.miai.vn/thu-vien-mi-ai/
+- [Pyimagesearch Yolo Object Detection](https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
+- [Novel Covid API](https://github.com/disease-sh/api)
+- [UI for homepage](https://www.youtube.com/watch?v=zBPHBnSIzfk)
+- [gdown](https://pypi.org/project/gdown/)
+- [Face mask dataset](https://www.miai.vn/thu-vien-mi-ai/)
