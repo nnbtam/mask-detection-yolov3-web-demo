@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head><title></title>
+        <link rel="stylesheet" type="text/css" href="../static/css/homepage.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Baloo+Thambi+2:wght@700&display=swap" rel="stylesheet">  
+    </head>
+<body>
+    <nav>
+       
+        <ul>
+            <li><a href="">Home page</a></li>
+            <li><a href="">Login</a></li>
+        </ul>
+
+        <img class="logo" src="../static/img/logo.png">
+    </nav>
+    
+    <header>
+        <div class="bg">
+            <div class="content">
+                <div class="kolom">   
+                    <div class="atas">
+                        <form action="{{ url_for('dashboard') }}" >
+                            <input type="image" id="dashboard" class="img" src="../static/img/world.png" />
+                        </form>
+                    </div>
+                    <div class="tengah">
+                        <h1>
+                            GLOBAL STATUS
+                        </h1>
+                    </div>
+                    <div class="bawah">
+                        <p>
+                            Dashboard to track the spread of Coronavirus all over the world
+                        </p>
+                    </div>        
+                    
+                </div>  
+
+                <div class="kolom">
+                    <div class="atas">
+                        <form action="{{ url_for('detect_mask') }}" >
+                            <input type="image" id="detect_mask" class="img" src="../static/img/medical-mask.png" />
+                        </form>
+                    </div>
+                    <div class="tengah">
+                        <h1>
+                            MASK DETECTION
+                        </h1>
+                    </div>
+                    <div class="bawah">
+                        <p>
+                            Detect people without masks to give warnings
+                        </p>
+                    </div> 
+                </div>                
+                <div class="kolom">
+                    <div class="atas">
+                        <form action="{{ url_for('detect_mask_live') }}" >
+                            <input type="image" id="detect_mask_live" class="img" src="../static/img/china.png" />
+                        </form>
+                    </div>
+
+                    <div class="tengah">
+                        <h1>
+                            REALTIME TRACKING
+                        </h1>
+                    </div>
+                    <div class="bawah">
+                        <p>
+                            Live mask monitoring
+                        </p>
+                    </div> 
+                </div>                
+                
+            </div>
+
+        </div>
+
+    </header>
+    <footer>
+
+    </footer>
+</body>
+
+
+</html>

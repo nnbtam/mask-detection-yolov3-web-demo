@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title> Covid Tracker - Flask </title>
+	<!-- Compiled and minified CSS -->
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/dashboard.css">
+	
+
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,500&display=swap" rel="stylesheet">
+	<!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="../static/js/geochart.js"></script>
+	
+</head>
+
+<body>
+	<h1 style="text-align: center; padding: 1em 2em 1em 1em; font-family: 'Rubik', sans-serif; font-size: 40px;"> Coronavirus (COVID-19) Tracker</h1>
+	<form action="{{ url_for('home') }}" >
+		<input type="image" id="btn_back" class="btn" src="../static/img/back.svg" />
+	</form>
+	
+	<div class="container">
+		<div class="cardItem">
+			<h2 class="header" style="color:darkblue">Total cases</h2>
+			<div id="total_cases"class="card-content" style="color:darkblue"></div>
+		</div>
+
+		<div class="cardItem">
+			<h2 class="header" style="color:darkgreen">Recovered</h2>
+			<div id="recovered"class="card-content" style="color:darkgreen"></div>
+		</div>
+		<div class="cardItem">
+			<h2 class="header" style="color:brown">Deaths</h2>
+			<div id="deaths"class="card-content" style="color:brown"></div>
+		</div>
+	</div>
+	  
+	<div class="row">
+		<div class="column">
+			<div id="regions_div" style="width: 900px; height: 500px; align-items: left; padding-left: 20px;"></div>
+		</div>
+
+		<div class="column" style="padding-left: 50px;">
+			<div class="row">
+				<div class="column" style="padding-left: 50px;">
+					<input type="text" id="inputCountry" placeholder="Search by country" title="Type in a name">
+					<input type="submit" id="searchCountry" value="Search">
+				</div>	
+			</div>
+			<div id="table_div" style="align-items: right;"></div>
+			<div id="curve_chart" style="width: 900px; height: 500px"></div>
+			<!-- <div id="World_figures" style="width: 800px; height: 500px; align-items: right;"> </div> -->
+		</div>
+	</div>
+	
+	<script>
+		var submit = document.getElementById("searchCountry");
+		submit.onclick = function() {
+				var country = document.getElementById("inputCountry").value;
+	
+				const covid_query_by_country = "https://disease.sh/v3/covid-19/countries/".concat(country);
+				// console.log(covid_query_by_country);
+
+
+			fetch(covid_query_by_country)
+			.then(response => response.json())
+			.then(result => {
+				google.charts.load('current', {'packages':['table']});
+      			google.charts.setOnLoadCallback(drawTable);
+
+      			function drawTable() {
+        		var data = new google.visualization.DataTable();
+        		data.addColumn('number', 'Cases');
+        		data.addColumn('number', 'Today Cases');
+				data.addColumn('number', 'Deaths');
+        		data.addColumn('number', 'Today Deaths');
+        		data.addColumn('number', 'Recovered');
+        		data.addColumn('number', 'Today Recovered');
+        		data.addColumn('number', 'Active');
+        		data.addColumn('number', 'Population');
+				
+        		data.addRows([
+          [result.cases, result.todayCases, result.deaths, result.todayDeaths, result.recovered, result.todayRecovered, result.active, result.population],
+        ]);
+
+        var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data, {showRowNumber: true, width: '100%', height: '100%'});
+      }
+			})
+
+				const covid_history_by_country = "https://disease.sh/v3/covid-19/historical/".concat(country);
+			fetch(covid_history_by_country)
+			.then(response => response.json())
+			.then(result => {
+
+				google.charts.load('current', {'packages':['corechart']});
+      			google.charts.setOnLoadCallback(drawChart);
+
+      			function drawChart() {
+				var data = new google.visualization.DataTable();
+				data.addColumn('datetime', 'Date');
+				data.addColumn('number', 'Cases');
+				
+		
+				for (var key in result.timeline.cases) {
+  			 		// console.log(' name=' + key + ' value=' + result.timeline.cases[key]);
+					data.addRow([new Date(key), result.timeline.cases[key]]);
+				}
+
+				var options = {
+         		 title: 'Cases by day',
+         		 curveType: 'function',
+         		//  legend: { position: 'bottom' }
+       			 };
+
+        		var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+       			 chart.draw(data, options);
+				}
+			})
+		}
+	</script>
+
+	<script>
+		const covid_all_api = "https://disease.sh/v3/covid-19/all"
+
+		fetch(covid_all_api)
+		.then(response => response.json())
+		.then(result =>{
+			document.getElementById("total_cases").innerHTML= result.cases;
+			document.getElementById("recovered").innerText = result.recovered;
+			document.getElementById("deaths").innerText = result.deaths;
+		})
+	</script>
+		
+</body>
+
+</html>
