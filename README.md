@@ -22,6 +22,7 @@ Then ```cd``` into each folder and call ```flask run```
 
 ### References: 
 - [Pyimagesearch Yolo Object Detection](https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
+- [Yolov3 webcam](https://github.com/iArunava/YOLOv3-Object-Detection-with-OpenCV)
 - [Novel Covid API](https://github.com/disease-sh/api)
 - [UI for homepage](https://www.youtube.com/watch?v=zBPHBnSIzfk)
 - [gdown](https://pypi.org/project/gdown/)
