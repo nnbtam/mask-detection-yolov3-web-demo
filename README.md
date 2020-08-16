@@ -1,8 +1,11 @@
-# Mask detection Yolov3 Web Demo (Image + Webcam) - MaskUp 
+# MaskUP - Mask detection with Yolov3 (Web demo)
 
 The repo contains two demonstrations:
 - Pretrained Yolov3 on COCO dataset
 - Custom Yolov3 on Face Mask dataset
+
+
+![MaskUP Homepage](https://i.ibb.co/x6T6s0Z/screencapture-127-0-0-1-5000-2020-08-16-22-26-41.png)
 
 ### Installation
 
