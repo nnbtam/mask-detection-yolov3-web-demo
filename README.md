@@ -5,6 +5,22 @@ The repo contains two demonstrations:
 - Custom Yolov3 on Face Mask dataset
 
 ### Installation
+
+Clone repository
+```
+git clone <repo url>
+```
+
+Create and activate virtual environment for python development
+```
+virtualenv env
+source env/bin/activate
+```
+
+Install libraries
+```
+pip install -r requirements.txt
+```
 Give permission to .sh file
 ```
 chmod +x download.sh
@@ -14,11 +30,12 @@ Activate .sh file to download yolov3 models
 ```
 ./download.sh
 ```
-Then ```cd``` into each folder and call ```flask run``` 
+Then **respectively** ```cd``` into each folder and call ```flask run```, the website is deployed to localhost: ```http://127.0.0.1:5000/```
 
 ### Technology:
 - Frontend: HTML + CSS + Javascript
 - Backend: Flask
+- CV Libraries: OpenCV
 
 ### References: 
 - [Pyimagesearch Yolo Object Detection](https://www.pyimagesearch.com/2018/11/12/yolo-object-detection-with-opencv/)
