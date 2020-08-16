@@ -22,7 +22,7 @@
                 <div class="kolom">   
                     <div class="atas">
                         <form action="{{ url_for('dashboard') }}" >
-                            <input type="image" id="dashboard" class="img" src="../static/img/world.png" />
+                            <input type="image" id="dashboard" class="img" src="../static/img/dashboard.png" />
                         </form>
                     </div>
                     <div class="tengah">
@@ -51,14 +51,33 @@
                     </div>
                     <div class="bawah">
                         <p>
-                            Detect people without masks to give warnings
+                            Detect people without masks to give warnings - Image
                         </p>
                     </div> 
-                </div>                
+                </div>           
+                <div class="kolom">
+                    <div class="atas">
+                        <form action="{{ url_for('detect_video') }}" >
+                            <input type="image" id="detect_video" class="img" src="../static/img/video.png" />
+                        </form>
+                    </div>
+
+                    <div class="tengah">
+                        <h1>
+                            VIDEO SURVEILLANCE
+                        </h1>
+                    </div>
+                    <div class="bawah">
+                        <p>
+                            Detect people without masks to give warnings - Video
+                        </p>
+                    </div> 
+                </div>        
+
                 <div class="kolom">
                     <div class="atas">
                         <form action="{{ url_for('detect_mask_live') }}" >
-                            <input type="image" id="detect_mask_live" class="img" src="../static/img/china.png" />
+                            <input type="image" id="detect_mask_live" class="img" src="../static/img/realtime.png" />
                         </form>
                     </div>
 

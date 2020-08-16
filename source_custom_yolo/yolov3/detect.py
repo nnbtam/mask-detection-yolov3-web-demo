@@ -156,3 +156,34 @@ def infer_realtime_webcam(net, classes, colors, output_layers):
 		
 		yield (b'--frame\r\n'
                 b'Content-Type: image/jpeg\r\n\r\n' + out + b'\r\n\r\n')
+
+
+def infer_video(vid_path, output_dir, net, classes, colors, output_layers):
+	video = cv2.VideoCapture(vid_path)
+	(H, W) = (None, None)
+	out = None
+
+
+	while(True):
+		ret, frame = video.read()
+
+		# Check if the complete video is read
+		if not ret:
+			break
+			
+		if W is None or H is None:
+			(H, W) = frame.shape[:2]
+
+		frame = detect_object(frame, net, classes, colors, output_layers, H, W)
+
+		# Define the codec and create VideoWriter object
+		if out is None:
+			fourcc = cv2.VideoWriter_fourcc(*"MJPG")
+			out = cv2.VideoWriter(output_dir,fourcc, 30, (frame.shape[1], frame.shape[0]), True)
+
+		out.write(frame)
+	
+
+	print("[DEBUG INFER VIDEO] Done")
+	out.release()
+	video.release()
