@@ -30,7 +30,7 @@ Activate .sh file to download yolov3 models
 ```
 ./download.sh
 ```
-Then ```cd``` into each folder and call ```flask run```, the website is deployed to localhost: ```http://127.0.0.1:5000/`
+Then ```cd``` into each folder and call ```flask run```, the website is deployed to localhost: ```http://127.0.0.1:5000/```
 
 ### Technology:
 - Frontend: HTML + CSS + Javascript
